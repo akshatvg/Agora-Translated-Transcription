@@ -1,43 +1,45 @@
-# Agora Transcription
+# Agora Translated Transcription
 
-[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/akshatvg/Agora-Transcription?logo=github&style=social)](https://github.com/akshatvg/) [![GitHub last commit](https://img.shields.io/github/last-commit/akshatvg/Agora-Transcription?style=social&logo=git)](https://github.com/akshatvg/) [![GitHub stars](https://img.shields.io/github/stars/akshatvg/Agora-Transcription?style=social)](https://github.com/akshatvg/Agora-Transcription/stargazers) [![GitHub forks](https://img.shields.io/github/forks/akshatvg/Agora-Transcription?style=social&logo=git)](https://github.com/akshatvg/Agora-Transcription/network)
+[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/akshatvg/Agora-Translated-Transcription?logo=github&style=social)](https://github.com/akshatvg/) [![GitHub last commit](https://img.shields.io/github/last-commit/akshatvg/Agora-Translated-Transcription?style=social&logo=git)](https://github.com/akshatvg/) [![GitHub stars](https://img.shields.io/github/stars/akshatvg/Agora-Translated-Transcription?style=social)](https://github.com/akshatvg/Agora-Translated-Transcription/stargazers) [![GitHub forks](https://img.shields.io/github/forks/akshatvg/Agora-Translated-Transcription?style=social&logo=git)](https://github.com/akshatvg/Agora-Translated-Transcription/network)
 
-Web application to create personal notes or group transcribed text during video calls.
+Web application to create translated transcribed text to and from any language during video calls.
 
 <p align="center">
-<a href="https://transcription.akshatvg.com">
+<a href="https://translation.akshatvg.com">
 <img src="./favicon.png" width="60px" alt="Agora.io"/>
 </a>
 </p>
 
-![Generic badge](https://img.shields.io/badge/Agora-Transcription-orange) 
+![Generic badge](https://img.shields.io/badge/Agora-Translated-Transcription-orange) 
 
-[![Generic badge](https://img.shields.io/badge/view-demo-purple)](https://transcription.akshatvg.com)
+[![Generic badge](https://img.shields.io/badge/view-demo-purple)](https://translation.akshatvg.com)
 
 ## Features
 
-- Transcription for all participants in the call
-- Note taking for personal use
+- Live translated transcription for users depending on language of their choice.
 
 ## Useful Links
 
-- [Deployed Website](https://transcription.akshatvg.com)
+- [Deployed Website](https://translation.akshatvg.com)
 - [Agora.io Website](https://www.agora.io/)
 - [SDK NG Documentation](https://agoraio-community.github.io/AgoraWebSDK-NG/api/en/index.html)
 - [Sample Video Call App](https://github.com/AgoraIO-Community/AgoraWebSDK-NG/tree/master/Demo/basicVideoCall)
 - [Agora RTM SDK Documentation](https://docs.agora.io/en/Real-time-Messaging/API%20Reference/RTM_web/v1.0.0/index.html)
 - [RTM Quickstart Guide](https://docs.agora.io/en/Real-time-Messaging/messaging_web?platform=Web)
-- [Guided Blog](https://medium.com/@akshatvg/building-your-own-transcription-and-note-making-service-49bf4180e82b)
+- [Translation API Quickstart](https://cloud.google.com/translate/docs/basic/quickstart#translate_translate_text-drest)
+- [Guided Blog](#!)
 
 ## Requirements
 
-[![GitHub top language](https://img.shields.io/github/languages/top/akshatvg/Agora-Transcription?logo=javascript&style=social)](https://github.com/akshatvg/)
+[![GitHub top language](https://img.shields.io/github/languages/top/akshatvg/Agora-Translated-Transcription?logo=javascript&style=social)](https://github.com/akshatvg/)
 
-The source code of this project is written in **`HTML`, `CSS`, `JavaScript`, `Agora RTM SDK` and the `Agora SDK NG`**. So, you would require the Agora SDKs and a valid App Id to run this project.
+- The source code of this project is written in **`HTML`, `CSS`, `JavaScript`, `Agora RTM SDK` and the `Agora SDK NG`**. So, you would require the Agora SDKs and a valid App Id to run this project.
+- You will also need to enable the [Cloud Translation API](https://console.cloud.google.com/apis/library/translate.googleapis.com?project=agora-328918&supportedpurview=project) from the Google Cloud Console.
+
 
 ## Instructions
 
-[![chrome](https://img.shields.io/badge/Open-index.html-lightgrey.svg?logo=google-chrome&style=popout&logoColor=red)](https://transcription.akshatvg.com)
+[![chrome](https://img.shields.io/badge/Open-index.html-lightgrey.svg?logo=google-chrome&style=popout&logoColor=red)](https://translation.akshatvg.com)
 
 Extract the folder and run `index.html`
 
@@ -88,9 +90,9 @@ ______      _               _   _               _
 
 ## License
 
-**MIT &copy; [Akshat Gupta](https://github.com/akshatvg/Agora-Transcription/blob/master/LICENSE)**
+**MIT &copy; [Akshat Gupta](https://github.com/akshatvg/Agora-Translated-Transcription/blob/master/LICENSE)**
 
-[![GitHub license](https://img.shields.io/github/license/akshatvg/Agora-Transcription?style=social&logo=github)](https://github.com/akshatvg/Agora-Transcription/blob/master/LICENSE) [![Twitter Follow](https://img.shields.io/twitter/follow/akshatvg?style=social)](https://twitter.com/akshatvg)
+[![GitHub license](https://img.shields.io/github/license/akshatvg/Agora-Translated-Transcription?style=social&logo=github)](https://github.com/akshatvg/Agora-Translated-Transcription/blob/master/LICENSE) [![Twitter Follow](https://img.shields.io/twitter/follow/akshatvg?style=social)](https://twitter.com/akshatvg)
 
 ---------
 

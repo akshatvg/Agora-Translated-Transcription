@@ -4,7 +4,6 @@ var client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
 var SpeechRecognition = window.webkitSpeechRecognition || window.speechRecognition;
 var recognition = new webkitSpeechRecognition() || new SpeechRecognition();
 var transContent = "";
-var noteContent = "";
 recognition.continuous = true;
 // RTM Global Vars
 var isLoggedIn = false;
@@ -38,7 +37,6 @@ $("#join-form").submit(async function (e) {
   } finally {
     $("#leave").attr("disabled", false);
     $("#transcribe").attr("disabled", false);
-    $("#note").attr("disabled", false);
   }
 })
 
@@ -83,8 +81,6 @@ async function join() {
         console.log('Voice recognition is on.');
         $("#transcribe").attr("disabled", true);
         $("#stop-transcribe").attr("disabled", false);
-        $("#stop-note").attr("disabled", true);
-        $("#note").attr("disabled", true);
         if (transContent.length) {
           transContent += ' ';
         }
@@ -108,8 +104,6 @@ async function join() {
             console.log("Message wasn't sent due to an error: ", error);
           });
         };
-        $("#note").attr("disabled", false);
-        $("#stop-note").attr("disabled", true);
         $("#stop-transcribe").attr("disabled", true);
         $("#transcribe").attr("disabled", false);
       });
@@ -151,10 +145,8 @@ async function leave() {
   $("#local-player-name").text("");
   $("#join").attr("disabled", false);
   $("#leave").attr("disabled", true);
-  $("#note").attr("disabled", true);
   $("#transcribe").attr("disabled", true);
   $("#stop-transcribe").attr("disabled", true);
-  $("#stop-note").attr("disabled", true);
   console.log("Client leaves channel success");
 }
 
@@ -192,36 +184,6 @@ function handleUserUnpublished(user) {
   delete remoteUsers[id];
   $(`#player-wrapper-${id}`).remove();
 }
-
-// Start self notes
-$("#note").click(function () {
-  console.log('Voice recognition is on.');
-  $("#stop-note").attr("disabled", false);
-  $("#note").attr("disabled", true);
-  $("#stop-transcribe").attr("disabled", true);
-  $("#transcribe").attr("disabled", true);
-  if (noteContent.length) {
-    noteContent += ' ';
-  }
-  recognition.start();
-});
-
-// Stop self notes
-$("#stop-note").click(function () {
-  console.log('Voice recognition is off.');
-  recognition.stop();
-  recognition.onresult = function (event) {
-    var current = event.resultIndex;
-    var transcript = event.results[current][0].transcript;
-    noteContent = noteContent + transcript + "<br>";
-    $("#note-text").append("<b><i>You said: </i></b> " + noteContent);
-    noteContent = '';
-  };
-  $("#note").attr("disabled", false);
-  $("#stop-note").attr("disabled", true);
-  $("#stop-transcribe").attr("disabled", true);
-  $("#transcribe").attr("disabled", false);
-});
 
 // Can't recognise voice
 recognition.onerror = function (event) {
