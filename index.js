@@ -97,25 +97,30 @@ async function join() { // Add event listener to play remote tracks when remote 
                 recognition.onresult = function (event) {
                     var current = event.resultIndex;
                     var transcript = event.results[current][0].transcript;
-                    transContent = transContent + transcript + "<br>";
+                    transContent = transContent + transcript;
                     singleMessage = transContent;
                     channel.sendMessage({text: singleMessage}).then(() => {
                         console.log("Message sent successfully.");
                         console.log("Your message was: " + singleMessage + " by " + accountName);
-                        var xhr = new XMLHttpRequest();
-                        xhr.open("POST", `https://www.googleapis.com/language/translate/v2?key=${gcpKey}&source=${inputLang}&target=${outputLang}&callback=translateText&q=${singleMessage}`, true);
-                        xhr.send();
-                        xhr.onload = function () {
-                            if (this.status == 200) {
-                                var data = JSON.parse(this.responseText);
-                                console.log(data.data.translations[0].translatedText);
-                                $("#actual-text").append("<br> <b>Speaker:</b> " + accountName + "<br> <b>Message:</b> " + data.data.translations[0].translatedText + "<br>");
-                                transContent = '';
-                            } else {
-                                var data = JSON.parse(this.responseText);
-                                console.log(data);
-                            }
-                        };
+                        if (inputLang === outputLang) {
+                            $("#actual-text").append("<br> <b>Speaker:</b> " + accountName + "<br> <b>Message:</b> " + singleMessage + "<br>");
+                            transContent = '';
+                        } else {
+                            var xhr = new XMLHttpRequest();
+                            xhr.open("POST", `https://www.googleapis.com/language/translate/v2?key=${gcpKey}&source=${inputLang}&target=${outputLang}&callback=translateText&q=${singleMessage}`, true);
+                            xhr.send();
+                            xhr.onload = function () {
+                                if (this.status == 200) {
+                                    var data = JSON.parse(this.responseText);
+                                    console.log(data.data.translations[0].translatedText);
+                                    $("#actual-text").append("<br> <b>Speaker:</b> " + accountName + "<br> <b>Message:</b> " + data.data.translations[0].translatedText + "<br>");
+                                    transContent = '';
+                                } else {
+                                    var data = JSON.parse(this.responseText);
+                                    console.log(data);
+                                }
+                            };
+                        }
                     }).catch(error => {
                         console.log("Message wasn't sent due to an error: ", error);
                     });
