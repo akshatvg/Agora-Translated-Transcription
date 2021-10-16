@@ -79,6 +79,7 @@ async function join() { // Add event listener to play remote tracks when remote 
             console.log('AgoraRTM client channel join success.');
             // Start transcription for all (RTM)
             $("#transcribe").click(function () {
+                recognition.lang = $('#input-lang').val();
                 console.log('Voice recognition is on.');
                 $("#transcribe").attr("disabled", true);
                 $("#stop-transcribe").attr("disabled", false);

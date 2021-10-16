@@ -26,6 +26,7 @@ Web application to create translated transcribed text to and from any language d
 - [Sample Video Call App](https://github.com/AgoraIO-Community/AgoraWebSDK-NG/tree/master/Demo/basicVideoCall)
 - [Agora RTM SDK Documentation](https://docs.agora.io/en/Real-time-Messaging/API%20Reference/RTM_web/v1.0.0/index.html)
 - [RTM Quickstart Guide](https://docs.agora.io/en/Real-time-Messaging/messaging_web?platform=Web)
+- [Create Service Accounts and other Pre-Requisites](https://cloud.google.com/speech-to-text/docs/before-you-begin)
 - [Translation API Quickstart](https://cloud.google.com/translate/docs/basic/quickstart#translate_translate_text-drest)
 - [Guided Blog](#!)
 
@@ -34,7 +35,7 @@ Web application to create translated transcribed text to and from any language d
 [![GitHub top language](https://img.shields.io/github/languages/top/akshatvg/Agora-Translated-Transcription?logo=javascript&style=social)](https://github.com/akshatvg/)
 
 - The source code of this project is written in **`HTML`, `CSS`, `JavaScript`, `Agora RTM SDK` and the `Agora SDK NG`**. So, you would require the Agora SDKs and a valid App Id to run this project.
-- You will also need to enable the [Cloud Translation API](https://console.cloud.google.com/apis/library/translate.googleapis.com?project=agora-328918&supportedpurview=project) from the Google Cloud Console.
+- You will also need to enable the [Cloud Translation API](https://console.cloud.google.com/apis/library/translate.googleapis.com) from the Google Cloud Console.
 
 
 ## Instructions
