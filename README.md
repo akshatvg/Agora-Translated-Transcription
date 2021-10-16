@@ -12,7 +12,7 @@ Web application to create translated transcribed text to and from any language d
 
 ![Generic badge](https://img.shields.io/badge/Agora-Translated-Transcription-orange) 
 
-[![Generic badge](https://img.shields.io/badge/view-demo-purple)](https://translation.akshatvg.com)
+[![Generic badge](https://img.shields.io/badge/view-demo-purple)](https://www.loom.com/share/27d4d8a365cd4968b1ede3909bf01490)
 
 ## Features
 
