@@ -31,7 +31,7 @@
       <div class="row join-info-group">
         <div class="col-sm">
           <p class="join-info-text">AppID</p>
-          <input id="appid" type="text" placeholder="Enter AppID" required class="form-control">
+          <input id="appid" type="password" placeholder="Enter AppID" required class="form-control">
         </div>
         <div class="col-sm">
           <p class="join-info-text">Channel</p>
@@ -42,9 +42,12 @@
           <input id="accountName" type="text" placeholder="Enter Your Name" required class="form-control">
         </div>
       </div>
-
       <div class="row mt-3 mb-3">
-        <div class="col s12 m6">
+        <div class="col-sm">
+          <p class="join-info-text">Google Cloud API Key</p>
+          <input id="gcpKey" type="password" placeholder="Enter Google Cloud API Key" required class="form-control">
+        </div>
+        <div class="col-sm">
           <label for="format">Select Input Language</label>
           <select class="form-control" name="input-lang" id="input-lang">
             <option value="af">Afrikaans</option>
@@ -58,9 +61,6 @@
             <option value="da">Danish</option>
             <option value="nl">Dutch</option>
             <option value="en" selected>English</option>
-            <option value="en-au">English (Australia)</option>
-            <option value="en-uk">English (United Kingdom)</option>
-            <option value="en-us">English (United States)</option>
             <option value="eo">Esperanto</option>
             <option value="fi">Finnish</option>
             <option value="fr">French</option>
@@ -97,7 +97,7 @@
             <option value="cy">Welsh</option>
           </select>
         </div>
-        <div class="col s12 m6">
+        <div class="col-sm">
           <label for="format">Select Output Language</label>
           <select class="form-control" name="output-lang" id="output-lang">
             <option value="af">Afrikaans</option>
@@ -111,9 +111,6 @@
             <option value="da">Danish</option>
             <option value="nl">Dutch</option>
             <option value="en" selected>English</option>
-            <option value="en-au">English (Australia)</option>
-            <option value="en-uk">English (United Kingdom)</option>
-            <option value="en-us">English (United States)</option>
             <option value="eo">Esperanto</option>
             <option value="fi">Finnish</option>
             <option value="fr">French</option>
@@ -178,11 +175,6 @@
         <div class="transcribed-text my-3">
           <h5 class="text-decoration-underline">Transcribed Text:</h5>
           <div class="actual-text" id="actual-text">
-          </div>
-        </div>
-        <div class="transcribed-text my-3">
-          <h5 class="text-decoration-underline">Notes:</h5>
-          <div class="note-text" id="note-text">
           </div>
         </div>
       </div>
