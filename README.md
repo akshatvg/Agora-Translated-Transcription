@@ -22,6 +22,7 @@ Web application to create translated transcribed text to and from any language d
 
 - [Deployed Website](https://translation.akshatvg.com)
 - [Agora.io Website](https://www.agora.io/)
+- [Demo Video](https://www.loom.com/share/27d4d8a365cd4968b1ede3909bf01490)
 - [SDK NG Documentation](https://agoraio-community.github.io/AgoraWebSDK-NG/api/en/index.html)
 - [Sample Video Call App](https://github.com/AgoraIO-Community/AgoraWebSDK-NG/tree/master/Demo/basicVideoCall)
 - [Agora RTM SDK Documentation](https://docs.agora.io/en/Real-time-Messaging/API%20Reference/RTM_web/v1.0.0/index.html)
