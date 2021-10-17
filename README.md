@@ -12,7 +12,7 @@ Web application to create translated transcribed text to and from any language d
 
 ![Generic badge](https://img.shields.io/badge/Agora-Translated-Transcription-orange) 
 
-[![Generic badge](https://img.shields.io/badge/view-demo-purple)](https://www.loom.com/share/27d4d8a365cd4968b1ede3909bf01490)
+[![Generic badge](https://img.shields.io/badge/view-demo-purple)](https://www.loom.com/share/f9ba432d333a4b428646a5536ab23c54)
 
 ## Features
 
@@ -22,14 +22,14 @@ Web application to create translated transcribed text to and from any language d
 
 - [Deployed Website](https://translation.akshatvg.com)
 - [Agora.io Website](https://www.agora.io/)
-- [Demo Video](https://www.loom.com/share/27d4d8a365cd4968b1ede3909bf01490)
+- [Demo Video](https://www.loom.com/share/f9ba432d333a4b428646a5536ab23c54)
 - [SDK NG Documentation](https://agoraio-community.github.io/AgoraWebSDK-NG/api/en/index.html)
 - [Sample Video Call App](https://github.com/AgoraIO-Community/AgoraWebSDK-NG/tree/master/Demo/basicVideoCall)
 - [Agora RTM SDK Documentation](https://docs.agora.io/en/Real-time-Messaging/API%20Reference/RTM_web/v1.0.0/index.html)
 - [RTM Quickstart Guide](https://docs.agora.io/en/Real-time-Messaging/messaging_web?platform=Web)
-- [Create Service Accounts and other Pre-Requisites](https://cloud.google.com/speech-to-text/docs/before-you-begin)
+- [Create Service Accounts and other Pre-Requisites](https://cloud.google.com/translate/docs/setup)
 - [Translation API Quickstart](https://cloud.google.com/translate/docs/basic/quickstart#translate_translate_text-drest)
-- [Guided Blog](#!)
+- [Guided Blog](https://medium.com/@akshatvg/build-a-live-translated-transcriptions-service-within-your-video-call-web-app-7578aadd6baf)
 
 ## Requirements
 
