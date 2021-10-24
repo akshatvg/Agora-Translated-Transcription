@@ -56,6 +56,7 @@ async function join() { // Add event listener to play remote tracks when remote 
     client.on("user-unpublished", handleUserUnpublished);
     $("#mic-btn").attr("disabled", false);
     $("#video-btn").attr("disabled", false);
+    $("#transcriptionLang").attr("disabled", true);
     // Join a channel and create local tracks, we can use Promise.all to run them concurrently
     [options.uid, localTracks.audioTrack, localTracks.videoTrack] = await Promise.all([
         // Join the channel
@@ -192,6 +193,7 @@ async function leave() {
     $("#leave").attr("disabled", true);
     $("#mic-btn").attr("disabled", true);
     $("#video-btn").attr("disabled", true);
+    $("#transcriptionLang").attr("disabled", false);
     console.log("Client leaves channel success");
 }
 
