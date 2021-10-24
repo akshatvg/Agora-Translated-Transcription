@@ -12,6 +12,11 @@ var localTracks = {
     videoTrack: null,
     audioTrack: null
 };
+// Default
+var localTrackState = {
+    videoTrackEnabled: true,
+    audioTrackEnabled: true
+}
 var remoteUsers = {};
 // Agora client options
 var options = {
@@ -49,6 +54,8 @@ $("#leave").click(function (e) {
 async function join() { // Add event listener to play remote tracks when remote user publishes
     client.on("user-published", handleUserPublished);
     client.on("user-unpublished", handleUserUnpublished);
+    $("#mic-btn").attr("disabled", false);
+    $("#video-btn").attr("disabled", false);
     // Join a channel and create local tracks, we can use Promise.all to run them concurrently
     [options.uid, localTracks.audioTrack, localTracks.videoTrack] = await Promise.all([
         // Join the channel
@@ -91,24 +98,24 @@ async function join() { // Add event listener to play remote tracks when remote 
                 var transcript = event.results[current][0].transcript;
                 transContent = transContent + transcript;
                 singleMessage = transContent;
-                text = {
+                rtmText = {
                     singleMessage: singleMessage,
-
+                    senderLang: $('#transcriptionLang').val()
                 };
                 msg = {
                     messageType: 'TEXT',
                     rawMessage: undefined,
-                    text: JSON.stringify(text)
+                    text: JSON.stringify(rtmText)
                 };
                 channel.sendMessage(msg).then(() => {
                     console.log("Message sent successfully.");
-                    console.log("Your message was: " + text.singleMessage + " by " + accountName);
-                    if (senderLang == transcriptionLang) {
-                        $("#actual-text").append("<br> <b>Speaker:</b> " + accountName + "<br> <b>Message:</b> " + text.singleMessage + "<br>");
+                    console.log("Your message was: " + rtmText.singleMessage + " by " + accountName + " in the following language: " + rtmText.senderLang);
+                    if (rtmText.senderLang == transcriptionLang) {
+                        $("#actual-text").append("<br> <b>Speaker:</b> " + accountName + "<br> <b>Message:</b> " + rtmText.singleMessage + "<br>");
                         transContent = '';
                     } else {
                         var xhr = new XMLHttpRequest();
-                        xhr.open("POST", `https://www.googleapis.com/language/translate/v2?key=${gcpKey}&source=${senderLang}&target=${transcriptionLang}&callback=translateText&q=${singleMessage}`, true);
+                        xhr.open("POST", `https://www.googleapis.com/language/translate/v2?key=${gcpKey}&source=${rtmText.senderLang}&target=${transcriptionLang}&callback=translateText&q=${singleMessage}`, true);
                         xhr.send();
                         xhr.onload = function () {
                             if (this.status == 200) {
@@ -130,10 +137,23 @@ async function join() { // Add event listener to play remote tracks when remote 
             channel.on('ChannelMessage', ({
                 text
             }, senderId) => {
-                text = JSON.parse(text);
+                rtmText = JSON.parse(text);
                 console.log("Message received successfully.");
-                console.log("The message is: " + text.singleMessage + " by " + senderId);
-                $("#actual-text").append("<br> <b>Speaker:</b> " + senderId + "<br> <b>Message:</b> " + text.singleMessage + "<br>");
+                console.log("The message is: " + rtmText.singleMessage + " by " + senderId + " in the following language: " + rtmText.senderLang);
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", `https://www.googleapis.com/language/translate/v2?key=${gcpKey}&source=${rtmText.senderLang}&target=${transcriptionLang}&callback=translateText&q=${rtmText.singleMessage}`, true);
+                xhr.send();
+                xhr.onload = function () {
+                    if (this.status == 200) {
+                        var data = JSON.parse(this.responseText);
+                        console.log(data.data.translations[0].translatedText);
+                        $("#actual-text").append("<br> <b>Speaker:</b> " + senderId + "<br> <b>Message:</b> " + data.data.translations[0].translatedText + "<br>");
+                        transContent = '';
+                    } else {
+                        var data = JSON.parse(this.responseText);
+                        console.log(data);
+                    }
+                };
             });
         }).catch(error => {
             console.log('AgoraRTM client channel join failed: ', error);
@@ -170,6 +190,8 @@ async function leave() {
     $("#local-player-name").text("");
     $("#join").attr("disabled", false);
     $("#leave").attr("disabled", true);
+    $("#mic-btn").attr("disabled", true);
+    $("#video-btn").attr("disabled", true);
     console.log("Client leaves channel success");
 }
 
@@ -215,4 +237,68 @@ recognition.onerror = function (event) {
         recognition.stop();
         recognition.start();
     }
+}
+
+$("#mic-btn").click(function () {
+    if (localTrackState.audioTrackEnabled) {
+        muteAudio();
+    } else {
+        unmuteAudio();
+    }
+});
+
+$("#video-btn").click(function () {
+    if (localTrackState.videoTrackEnabled) {
+        muteVideo();
+    } else {
+        unmuteVideo();
+    }
+});
+
+// setEnabled true turns it on and false
+// turns it off.
+async function muteAudio() {
+    if (!localTracks.audioTrack) {
+        return;
+    }
+    await localTracks.audioTrack.setEnabled(false);
+    localTrackState.audioTrackEnabled = false;
+    console.log("------------------------");
+    console.log("Muted Audio.");
+    recognition.stop();
+    $("#mic-btn").text("Unmute Audio");
+}
+
+async function unmuteAudio() {
+    if (!localTracks.audioTrack) {
+        return;
+    }
+    await localTracks.audioTrack.setEnabled(true);
+    localTrackState.audioTrackEnabled = true;
+    console.log("------------------------");
+    recognition.start();
+    console.log("Unmuted Audio.");
+    $("#mic-btn").text("Mute Audio");
+}
+
+async function muteVideo() {
+    if (!localTracks.videoTrack) {
+        return;
+    }
+    await localTracks.videoTrack.setEnabled(false);
+    localTrackState.videoTrackEnabled = false;
+    console.log("------------------------");
+    console.log("Muted Video.");
+    $("#video-btn").text("Unmute Video");
+}
+
+async function unmuteVideo() {
+    if (!localTracks.videoTrack) {
+        return;
+    }
+    await localTracks.videoTrack.setEnabled(true);
+    localTrackState.videoTrackEnabled = true;
+    console.log("------------------------");
+    console.log("Unmuted Video.");
+    $("#video-btn").text("Mute Video");
 }

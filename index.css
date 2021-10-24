@@ -10,7 +10,6 @@
   font-size: 18px;
 }
 
-
 #join-form {
   margin-top: 10px;
 }
@@ -33,8 +32,7 @@ input {
   margin: 8px 0;
 }
 
-#success-alert,
-#success-alert-with-token {
+#success-alert, #success-alert-with-token {
   display: none;
 }
 
@@ -45,23 +43,13 @@ input {
   }
 }
 
-#join,
-#leave,
-#transcribe,
-#stop-transcribe,
-#note,
-#stop-note {
+#join, #leave, #mic-btn, #video-btn {
   background-color: #0C9DFD;
   color: white;
   border-radius: 5px;
 }
 
-#join:hover,
-#leave:hover,
-#transcribe:hover,
-#stop-transcribe:hover,
-#note:hover,
-#stop-note:hover {
+#join:hover, #leave:hover, #mic-btn:hover, #video-btn:hover {
   background-color: rgba(2, 133, 221, 0.911);
 }
 
