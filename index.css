@@ -70,4 +70,6 @@ input {
   padding: 30px;
   color: white;
   border-radius: 15px;
+  max-height: 450px;
+  overflow-y: scroll;
 }
