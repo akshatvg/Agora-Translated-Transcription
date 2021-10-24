@@ -91,7 +91,7 @@ async function join() { // Add event listener to play remote tracks when remote 
                 transContent += ' ';
             }
             recognition.start();
-            // Stop transcription for all (RTM)
+            // Start transcribing and translating
             var gcpKey = $("#gcpKey").val();
             var transcriptionLang = $('#transcriptionLang').val();
             recognition.onresult = function (event) {
@@ -99,6 +99,8 @@ async function join() { // Add event listener to play remote tracks when remote 
                 var transcript = event.results[current][0].transcript;
                 transContent = transContent + transcript;
                 singleMessage = transContent;
+
+                // Write code to send, process and show translated transcription to host.
                 rtmText = {
                     singleMessage: singleMessage,
                     senderLang: $('#transcriptionLang').val(),
@@ -139,6 +141,7 @@ async function join() { // Add event listener to play remote tracks when remote 
             channel.on('ChannelMessage', ({
                 text
             }, senderId) => {
+                // Write code to receive, process and show translated transcription to all users.
                 rtmText = JSON.parse(text);
                 console.log("Message received successfully.");
                 console.log("The message is: " + rtmText.singleMessage + " by " + senderId + " in the following language: " + rtmText.senderLang + " sent at: " + rtmText.time);
