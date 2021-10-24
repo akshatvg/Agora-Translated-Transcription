@@ -101,7 +101,8 @@ async function join() { // Add event listener to play remote tracks when remote 
                 singleMessage = transContent;
                 rtmText = {
                     singleMessage: singleMessage,
-                    senderLang: $('#transcriptionLang').val()
+                    senderLang: $('#transcriptionLang').val(),
+                    time: new Date().toLocaleString("en-US", { year: 'numeric', month: 'long', day: 'numeric', hour12: true, hour: 'numeric', minute: 'numeric', second: 'numeric' })
                 };
                 msg = {
                     messageType: 'TEXT',
@@ -110,9 +111,9 @@ async function join() { // Add event listener to play remote tracks when remote 
                 };
                 channel.sendMessage(msg).then(() => {
                     console.log("Message sent successfully.");
-                    console.log("Your message was: " + rtmText.singleMessage + " by " + accountName + " in the following language: " + rtmText.senderLang);
+                    console.log("Your message was: " + rtmText.singleMessage + " by " + accountName + " in the following language: " + rtmText.senderLang + " sent at: " + rtmText.time);
                     if (rtmText.senderLang == transcriptionLang) {
-                        $("#actual-text").append("<br> <b>Speaker:</b> " + accountName + "<br> <b>Message:</b> " + rtmText.singleMessage + "<br>");
+                        $("#actual-text").append("<br> <b>Speaker:</b> " + accountName + "<br> <b>Message:</b> " + rtmText.singleMessage + "<br> <b>Sent On:</b> " + rtmText.time + "<br>");
                         transContent = '';
                     } else {
                         var xhr = new XMLHttpRequest();
@@ -122,7 +123,7 @@ async function join() { // Add event listener to play remote tracks when remote 
                             if (this.status == 200) {
                                 var data = JSON.parse(this.responseText);
                                 console.log(data.data.translations[0].translatedText);
-                                $("#actual-text").append("<br> <b>Speaker:</b> " + accountName + "<br> <b>Message:</b> " + data.data.translations[0].translatedText + "<br>");
+                                $("#actual-text").append("<br> <b>Speaker:</b> " + accountName + "<br> <b>Message:</b> " + data.data.translations[0].translatedText + "<br> <b>Sent On:</b> " + rtmText.time + "<br>");
                                 transContent = '';
                             } else {
                                 var data = JSON.parse(this.responseText);
@@ -140,7 +141,7 @@ async function join() { // Add event listener to play remote tracks when remote 
             }, senderId) => {
                 rtmText = JSON.parse(text);
                 console.log("Message received successfully.");
-                console.log("The message is: " + rtmText.singleMessage + " by " + senderId + " in the following language: " + rtmText.senderLang);
+                console.log("The message is: " + rtmText.singleMessage + " by " + senderId + " in the following language: " + rtmText.senderLang + " sent at: " + rtmText.time);
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", `https://www.googleapis.com/language/translate/v2?key=${gcpKey}&source=${rtmText.senderLang}&target=${transcriptionLang}&callback=translateText&q=${rtmText.singleMessage}`, true);
                 xhr.send();
@@ -148,7 +149,7 @@ async function join() { // Add event listener to play remote tracks when remote 
                     if (this.status == 200) {
                         var data = JSON.parse(this.responseText);
                         console.log(data.data.translations[0].translatedText);
-                        $("#actual-text").append("<br> <b>Speaker:</b> " + senderId + "<br> <b>Message:</b> " + data.data.translations[0].translatedText + "<br>");
+                        $("#actual-text").append("<br> <b>Speaker:</b> " + senderId + "<br> <b>Message:</b> " + data.data.translations[0].translatedText + "<br> <b>Sent On:</b> " + rtmText.time + "<br>");
                         transContent = '';
                     } else {
                         var data = JSON.parse(this.responseText);
